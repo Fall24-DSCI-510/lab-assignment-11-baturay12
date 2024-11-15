@@ -5,7 +5,22 @@ from scipy.stats import zscore
 
 # Question 1: Pre-process the data
 def preprocess_data(input_filename):
-    pass
+    iris = pd.read_csv(input_filename, header = None, names = ['SepalLengthcm', 'SepalWidthcm', 'PetalLengthcm', 'PetalWidthcm', 'Species'])
+
+    # Calculate z-scores for SepalLengthCm and SepalWidthCm
+    iris['SepalLengthCm_z'] = zscore(iris['SepalLengthcm'])
+    iris['SepalWidthCm_z'] = zscore(iris['SepalWidthcm'])
+
+    # Remove z-scores less than -2 or greater than 2
+    filtered_iris = iris[(iris['SepalLengthCm_z'] > -2) & 
+                     (iris['SepalLengthCm_z'] < 2) & 
+                     (iris['SepalWidthCm_z'] > -2) &  
+                     (iris['SepalWidthCm_z'] < 2)]
+
+    # Create new 'ID' column
+    filtered_iris['ID'] = range(1, filtered_iris.shape[0]+1)
+    
+    return filtered_iris
 
 
 
