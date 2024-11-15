@@ -15,7 +15,7 @@ def preprocess_data(input_filename):
     filtered_iris = iris[(iris['SepalLengthCm_z'] > -2) & 
                      (iris['SepalLengthCm_z'] < 2) & 
                      (iris['SepalWidthCm_z'] > -2) &  
-                     (input_firisilename['SepalWidthCm_z'] < 2)]
+                     (iris['SepalWidthCm_z'] < 2)]
 
     # Create new 'ID' column
     filtered_iris['ID'] = range(1, filtered_iris.shape[0]+1)
