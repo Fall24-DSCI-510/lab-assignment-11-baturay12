@@ -67,5 +67,7 @@ def get_virginica_petal_length_above_6(data):
     return filtered_data2['ID'].sort_values(ascending = True).tolist()
     
 def get_largest_sepal_width(data):
-    pass
+    filtered_data = preprocess_data(data)
+    max_row = filtered_data.loc[filtered_data['SepalWidthCm'].idxmax()]
+    return int(max_row['ID'])
 
